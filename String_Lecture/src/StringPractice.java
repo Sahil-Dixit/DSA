@@ -1,0 +1,12 @@
+
+public class StringPractice {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char[] arr = { 'S', 'a', 'h', 'i', 'l' };
+		int[] array = { 1, 2, 3, 4, 5 };
+		System.out.println(arr);
+		System.out.println(array);
+
+	}
+
+}

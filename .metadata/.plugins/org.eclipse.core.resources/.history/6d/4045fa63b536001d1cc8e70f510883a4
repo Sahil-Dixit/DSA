@@ -1,0 +1,26 @@
+package com.sahil;
+
+public class CircularLinkedList {
+
+	private Node head;
+	private int size;
+
+	public CircularLinkedList() {
+		this.size = 0;
+	}
+
+	private class Node {
+		private int data;
+		private Node next = head;
+
+		public Node(int data) {
+			this.data = data;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

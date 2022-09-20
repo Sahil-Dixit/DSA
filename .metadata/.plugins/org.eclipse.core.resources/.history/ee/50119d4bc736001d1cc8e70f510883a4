@@ -1,0 +1,85 @@
+package com.sahil;
+
+public class CircularLinkedList {
+
+	private Node head;
+	private Node tail;
+	private int size;
+
+	public CircularLinkedList() {
+		this.size = 0;
+	}
+
+	private class Node {
+		private int value;
+		private Node next;
+
+		public Node(int val) {
+			this.value = val;
+		}
+	}
+
+	public void insertFirst(int val) {
+		Node node = new Node(val);
+		if (head == null) {
+			head = node;
+			node.next = node;
+			tail = node;
+		} else {
+			node.next = head;
+			tail.next = node;
+			head = node;
+		}
+		size++;
+	}
+
+	public void insertLast(int val) {
+		Node node = new Node(val);
+		tail.next = node;
+		node.next = head;
+		tail = node;
+		size++;
+	}
+
+	// to delete particular node with given value
+	public void delete(int val) {
+		Node temp = head;
+		if (temp.value == val) {
+			head = temp.next;
+			tail.next = head;
+		} else {
+			while (temp.next.value != val) {
+				temp = temp.next;
+				if (temp == head) {
+					System.out.println("Entered value is not exist.");
+					return;
+				}
+			}
+			temp.next = temp.next.next;
+		}
+		size--;
+	}
+
+	public void display() {
+		Node temp = head;
+		do {
+			System.out.print(temp.value + " -> ");
+			temp = temp.next;
+		} while (temp != head);
+		System.out.println("HEAD");
+	}
+
+	public static void main(String[] args) {
+		CircularLinkedList cll = new CircularLinkedList();
+		cll.insertFirst(5);
+		cll.insertFirst(10);
+		cll.insertFirst(20);
+		cll.insertFirst(15);
+		cll.insertLast(2);
+		cll.display();
+		cll.delete(100);
+		cll.display();
+
+	}
+
+}

@@ -1,0 +1,173 @@
+package com.sahil;
+
+public class LinkedList {
+
+	private Node head;
+	private Node tail;
+	private int size;
+
+	public LinkedList() {
+		this.size = 0;
+	}
+
+	private class Node {
+		private int value;
+		private Node next;
+
+		public Node(int value) {
+			this.value = value;
+		}
+
+		public Node(int value, Node next) {
+			this.value = value;
+			this.next = next;
+		}
+	}
+
+	public void insertFirst(int val) {
+		Node node = new Node(val);
+		node.next = head;
+		head = node;
+		if (tail == null) {
+			tail = head;
+		}
+		size++;
+
+	}
+
+	public void insertLast(int val) {
+		if (tail == null) {
+			insertFirst(val);
+			return;
+		}
+		Node node = new Node(val);
+		tail.next = node;
+		tail = node;
+		size++;
+	}
+
+	public void insert(int val, int pos) {
+		if (pos == 0) {
+			insertFirst(val);
+		} else if (pos == size) {
+			insertLast(val);
+		} else {
+
+			Node temp = head;
+			int n = 1;
+			while (n < pos) {
+				temp = temp.next;
+				n++;
+			}
+			Node node = new Node(val, temp.next);
+			temp.next = node;
+			size++;
+		}
+	}
+
+	public int deleteFirst() {
+		int val = -1;
+		if (size == 0) {
+			System.out.println("Linked List is empty");
+		} else {
+			val = head.value;
+			head = head.next;
+			size--;
+		}
+		return val;
+	}
+
+	public Node getRef(int index) {
+		Node temp = head;
+		for (int i = 1; i <= index; i++) {
+			temp = temp.next;
+		}
+		return temp;
+	}
+
+	public int deleteLast() {
+		int val = -1;
+		if (size <= 1) {
+			val = deleteFirst();
+		} else {
+			Node temp = getRef(size - 2);
+			val = temp.next.value; // Here temp.next is nothing nut tail
+			temp.next = null;
+			tail = temp;
+			size--;
+		}
+		return val;
+	}
+
+	// to delete a particular node
+	public int delete(int pos) {
+		int val;
+		if (pos == 0) {
+			val = deleteFirst();
+		} else if (pos == size - 1) {
+			val = deleteLast();
+		} else {
+			Node temp = getRef(pos - 1);
+			val = temp.next.value;
+			temp.next = (temp.next).next;
+			size--;
+		}
+		return val;
+	}
+
+	// to find a node with node value
+	public Node get(int val) {
+		Node temp = head;
+		while (temp != null) {
+			if (temp.value == val) {
+				return temp;
+			}
+			temp = temp.next;
+		}
+		return null;
+	}
+
+	public void display() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.value + "->");
+			temp = temp.next;
+		}
+		System.out.println("END");
+	}
+
+	public static void main(String[] args) {
+		LinkedList ll = new LinkedList();
+		ll.insertFirst(5);
+		ll.insertFirst(10);
+		ll.insertFirst(20);
+		ll.insertFirst(15);
+		ll.insertLast(2);
+		ll.insertLast(12);
+		ll.insert(69, 3);
+		ll.display();
+
+//		System.out.println(ll.tail.value);
+
+//		System.out.println(ll.size);
+		System.out.println(ll.deleteFirst());
+		ll.display();
+		System.out.println(ll.deleteLast());
+		ll.display();
+//		System.out.println(ll.deleteLast());
+//		System.out.println(ll.deleteLast());
+//		System.out.println(ll.deleteLast());
+//		System.out.println(ll.deleteLast());
+//		ll.display();
+//		System.out.println(ll.tail.value);
+//		System.out.println(ll.head.value);
+//		System.out.println(ll.size);
+//		System.out.println(ll.deleteLast());
+//		System.out.println(ll.deleteLast());
+//		System.out.println(ll.delete(2));
+//		ll.display();
+		System.out.println(ll.get(5));
+
+	}
+
+}

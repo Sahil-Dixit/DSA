@@ -1,0 +1,21 @@
+//only work if there is only one space
+public class ReverseWordWise {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = "The Sky is Blue";
+		String rev = " ";
+		int startIndex = 0;
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) == ' ') {
+				rev = str.substring(startIndex, i) + " " + rev;
+				startIndex = i + 1;
+			}
+			if (i == str.length() - 1) {
+				rev = str.substring(startIndex, i + 1) + " " + rev;
+			}
+		}
+		System.out.println(rev);
+	}
+
+}

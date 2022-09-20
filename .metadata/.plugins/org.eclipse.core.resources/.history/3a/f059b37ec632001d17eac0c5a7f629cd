@@ -1,0 +1,10 @@
+
+public class SubStrings {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String str = "xyz";
+		System.out.println(str.length());
+	}
+
+}

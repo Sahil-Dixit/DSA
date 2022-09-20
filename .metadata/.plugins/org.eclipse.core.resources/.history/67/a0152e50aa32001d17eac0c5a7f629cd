@@ -1,0 +1,11 @@
+
+public class StringPractice {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char[] arr = {'S','a','h','i','l'};
+		System.out.println(arr);
+
+	}
+
+}

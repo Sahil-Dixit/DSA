@@ -1,0 +1,111 @@
+package doublyLinkedList;
+
+public class DoublyLinkedList {
+
+	private Node head;
+	private Node tail;
+	private int size;
+
+	public DoublyLinkedList() {
+		this.size = 0;
+	}
+
+	private class Node {
+		private int data;
+		private Node prev;
+		private Node next;
+
+		public Node(int data) {
+			this.data = data;
+		}
+
+		public Node(int data, Node prev, Node next) {
+			this.data = data;
+			this.prev = prev;
+			this.next = next;
+		}
+
+	}
+
+	public void insertFirst(int data) {
+		Node node = new Node(data);
+		if (head == null) {
+			head = node;
+			tail = node;
+		} else {
+			node.next = head;
+			head.prev = node;
+			head = node;
+		}
+		size++;
+	}
+
+	public void insertLast(int data) {
+		if (size == 0) {
+			insertFirst(data);
+		} else {
+			Node node = new Node(data);
+			node.prev = tail;
+			tail.next = node;
+			tail = node;
+			size++;
+		}
+	}
+
+	public void insert(int data, int pos) {
+		if (pos == 0) {
+			insertFirst(data);
+		} else if (pos == size) {
+			insertLast(data);
+		} else {
+			Node node = new Node(data);
+			Node temp = ref(pos);
+			node.prev = temp;
+			node.next = temp.next;
+			temp.next.prev = node;
+			temp.next = node;
+			size++;
+		}
+	}
+
+	public Node ref(int pos) {
+		Node temp = head;
+		int i = 1;
+		while (i < pos) {
+			temp = temp.next;
+			i++;
+		}
+		return temp;
+	}
+
+	public void display() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.data + " -> ");
+			temp = temp.next;
+		}
+		System.out.println("END");
+	}
+
+	public void displayReverse() {
+		Node temp = tail;
+		while (temp != null) {
+			System.out.print(temp.data + " -> ");
+			temp = temp.prev;
+		}
+		System.out.println("START");
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DoublyLinkedList dll = new DoublyLinkedList();
+		dll.insertFirst(5);
+		dll.insertFirst(15);
+		dll.insertFirst(10);
+		dll.insertFirst(20);
+		dll.insertLast(100);
+		dll.display();
+		dll.displayReverse();
+	}
+
+}

@@ -1,0 +1,24 @@
+package SinglyLinkedList;
+
+class SimpleLinkedList {
+	Node head;
+
+	 class Node {
+		int data;
+		Node next;
+
+		Node(int data) {
+			this.data = data;
+			next = null;
+		}
+	}
+
+	public static void main(String[] args) {
+		SimpleLinkedList l = new SimpleLinkedList();
+		l.head = l.new Node(5);
+//		Node node2 = l.new Node(10);
+//	    Node node3 = l.new Node(15);
+		l.Node = l.head;
+	}
+
+}

@@ -1,0 +1,81 @@
+package seaching_sorting_algorithms;
+
+public class BitonicSearch {
+	public static int searchAsc(int[] arr, int start, int end, int key) {
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+			if (arr[mid] == key) {
+				return mid;
+			}
+			if (arr[mid] > key) {
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
+		}
+		return -1;
+	}
+
+	public static int searchDesc(int[] arr, int start, int end, int key) {
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+			if (arr[mid] == key) {
+				return mid;
+			}
+			if (arr[mid] > key) {
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
+		}
+		return -1;
+	}
+
+	public static int peakElement(int[] arr) {
+		int start = 0;
+		int end = arr.length - 1;
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
+			if (mid > 0 && mid < arr.length - 1) {
+				if (arr[mid] > arr[mid - 1] && arr[mid] > arr[mid + 1]) {
+					return mid;
+				} else if (arr[mid] > arr[mid - 1]) {
+					start = mid + 1;
+				} else {
+					end = mid - 1;
+				}
+			} else if (mid == 0) {
+				if (arr[mid] > arr[mid + 1]) {
+					return mid;
+				} else {
+					return mid + 1;
+				}
+			} else if (mid == arr.length - 1) {
+				if (arr[mid] > arr[mid - 1]) {
+					return mid;
+				} else {
+					return mid - 1;
+				}
+			}
+		}
+		return -1;
+	}
+
+	public static void main(String[] args) {
+		int[] arr = { -3, 9, 18, 20, 17, 5, 1 };
+		int key = 17;
+		int index = peakElement(arr);
+
+		int idx1 = searchDesc(arr, index, arr.length - 1, key);
+
+		int idx2 = searchAsc(arr, 0, index - 1, key);
+
+		if (idx1 > -1) {
+			System.out.println(idx1);
+		} else {
+			System.out.println(idx2);
+		}
+
+	}
+
+}
